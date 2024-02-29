@@ -22,11 +22,19 @@ class _QuestionState extends State<Question> {
     Quiz(qus: 'black is not a color',ans: false),
   ];
   int index=0;
+  String result="";
   void next_qus(){
       if(index<=question.length){
         setState(() {
         index++;
       });}
+      }
+      void check(bool_ans){
+    print(bool_ans);
+    if(bool_ans==question[index].ans){
+     result='correct ans';}
+      else{result='wrong ans';
+    }
       }
   @override
   Widget build(BuildContext context) {
@@ -37,12 +45,13 @@ class _QuestionState extends State<Question> {
         mainAxisAlignment:MainAxisAlignment.center,
         children: [
           Text(question[index].qus),
-          Container(child: (TextButton( onPressed: () {next_qus();},
-            child: Text('True',style: TextStyle(color: Colors.yellow,
-              fontSize: 30),),)),),
-          Container(child: (TextButton( onPressed: () {next_qus();  },
+          Container(child: (TextButton( onPressed: () {check(true);next_qus();},
+            child: Text('True',style: TextStyle(color: Colors.green,
+              fontSize: 15),),)),),
+          Container(child: (TextButton( onPressed: () {check(false);next_qus();},
             child: Text('False',style: TextStyle(color: Colors.red,
-              fontSize: 30),),)),),
+              fontSize: 15),),)),),
+          Text(result),
 
         ],
 
